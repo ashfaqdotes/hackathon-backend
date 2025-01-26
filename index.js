@@ -16,7 +16,15 @@ mongoose
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://hackathon-frontend-nextjs-2025.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 
 app.use("/auth", auth);
 app.use("/loan", auth); // Add this line

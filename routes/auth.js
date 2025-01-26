@@ -9,13 +9,14 @@ import "dotenv/config";
 const app = Router();
 
 app.post("/signup", checkCredentials, async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, cnic, password } = req.body;
   const encryptedPass = await bcrypt.hash(password, 10);
 
   try {
     const newUser = await User.create({
       username,
       email,
+      cnic,
       password: encryptedPass,
     });
     const safeData = newUser.toObject();
